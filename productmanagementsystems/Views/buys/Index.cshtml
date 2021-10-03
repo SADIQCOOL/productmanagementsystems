@@ -1,0 +1,67 @@
+﻿@model IEnumerable<productmanagementsystems.Models.buy>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{ if (Session["drivername"] != null)
+    {
+        <h2>Clients Order</h2>
+
+        <p>
+            @*@Html.ActionLink("Create New", "Create")*@
+        </p>
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.ClinetName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.product.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Qtn)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.ClinetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qtn)
+                    </td>
+                    <td>
+                        @* @Html.ActionLink("Confirm", "Confirm", new { id = item.Purchase_Id, uid = item.Clinetid, pid = item.Productid, qtn = item.Qtn })
+        @Html.ActionLink("Add-to-Cart", "ConfirmOrderNow", "DriverCart", new { id = item.Productid }, null)
+                        @Html.ActionLink("Add-to-Cart", "ConfirmOrderNow", "DriverCart", new { id = item.Productid, uid = item.Clinetid, pid = item.Productid }, null)*@
+
+                        @Html.ActionLink("ConfirmNow", "ConfirmNow", "DriverCart", new { id = item.Productid, uid = item.Clinetid, pid = item.Productid, qtn = item.Qtn }, null)
+                        @*@Html.ActionLink("Edit", "Edit", new { id=item.Purchase_Id })   *@
+                        @Html.ActionLink("Details", "Details", new { id = item.Purchase_Id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Purchase_Id })
+
+                    </td>
+                </tr>
+            }
+
+
+
+
+        </table>
+
+    }
+    else {
+
+        Response.Redirect("~/Users/LoginDriver");
+
+
+    }
+    }}

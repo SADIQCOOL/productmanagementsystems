@@ -1,0 +1,64 @@
+﻿@model IEnumerable<productmanagementsystems.Models.delivered>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    if (Session["adminname"] != null)
+    {
+    <h2 style="text-align:center">Order List</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.o_quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.ClinetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driver.DriverName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.CAddress)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.o_quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.ClinetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver.DriverName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.CAddress)
+        </td>
+        <td>
+            @* @Html.ActionLink("Edit", "Edit", new { id=item.delever_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.delever_Id }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.delever_Id })
+        </td>
+    </tr>
+        }
+
+    </table>
+    }
+    else {
+
+
+        Response.Redirect("~/Users/Loginadmin");
+    }
+    }

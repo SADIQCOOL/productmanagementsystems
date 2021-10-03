@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style="height:380px;width:100%" src="../Images/0_03_21_2017_08_03_26.jpg" alt="First slide">
+            <div class="carousel-caption">
+                <h3>HUAWEI P9</h3>
+                <p>Mobile</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:380px;width:100%" src="../Images/2_03_21_2017_08_15_59.jpg" alt="Second slide">
+            <div class="carousel-caption">
+                <h3>HUAWEI GR5</h3>
+                <p>Mobile</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:380px;width:100%" src="../Images/IMG_6192.jpg" alt="Third slide">
+            <div class="carousel-caption">
+                <h3>STEERING WHEEL</h3>
+                <p>Gaming Accessories</p>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+
+
+</div>
+<div class="olContent f1">
+    <h2 Style="color:black">Search Product </h2>
+    <div class="olSearch fr">
+        <input type="text" placeholder="Enter Keyword.." name="searchKey" class="inputComn houseText form-control" />
+        <div class="searchIcon">
+            <button type="button" class="searchBtn">
+                <img src="~/Images/searchIcon.png" />
+
+
+            </button>
+
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header"></div>
+            <h1 class="text-center">Products</h1>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+@*
+    <div class="container">
+        <div class="card-header my-3">
+            All Products
+            <div class="row">
+
+                <div class="col-md-3 my-3">
+                    <div class="card w-100" style="width: 18rem;">
+                        <img class="card-img-top" src="~/Images/81_12_24_2017_10_26_28.jpg" alt="Card image cap" style="height: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Name</h5>
+                            <h6 class="price">Tk6000</h6>
+                            <h6 class="category">Category: </h6>
+                            <div class="mt-3 d-flex justify-content-between">
+
+                                <a href="" class="btn btn-dark">Add to Cart</a>
+                                <a href="" class="btn btn-primary">Buy Now</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3 my-3">
+                    <div class="card w-100" style="width: 18rem;">
+                        <img class="card-img-top" src="~/Images/81_12_24_2017_10_26_28.jpg" alt="Card image cap" style="height: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Name</h5>
+                            <h6 class="price">Tk6000</h6>
+                            <h6 class="category">Category: </h6>
+                            <div class="mt-3 d-flex justify-content-between">
+
+                                <a href="" class="btn btn-dark">Add to Cart</a>
+                                <a href="" class="btn btn-primary">Buy Now</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+*@
+<div class="row product-container">
+    <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+        <div class="thumbnail product-item" style="height:300px">
+
+            <img class="img-responsive" title="Click to View Product detail" style="cursor:pointer:height:120px;width:170px"
+                 src="~/Images/81_12_24_2017_10_26_28.jpg" />
+
+            <div class="caption">
+                <h5>Product Name</h5>
+                <p>Tk6000</p>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+        <div class="thumbnail product-item" style="height:300px">
+
+            <img class="img-responsive" title="Click to View Product detail" style="cursor:pointer:height:120px;width:170px"
+                 src="~/Images/81_12_24_2017_10_26_28.jpg" />
+
+            <div class="caption">
+                <h5>Product Name</h5>
+                <p>Tk6000</p>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+@* default line belwow*@
+@*
+    <div class="jumbotron">
+
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+
+
+                <div id="carousel" class="carousel slide">
+                    <ol class="carousel-indicators">
+
+                        <li data-target="" data-slide-to="0" class="active"></li>
+                        <li data-target="" data-slide-to="1" ></li>
+                        <li data-target="" data-slide-to="2" ></li>
+
+                    </ol
+
+                  <div class="carousel-inner">
+                      <div class="item active">
+
+                          <img style="height:420px;width:100% "src="../Images/IMG_6192.jpg"/>
+                          <div class="container">
+                              <h1>Image 1</h1>
+                          </div>
+                      </div>
+
+                  </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Getting started</h2>
+                    <p>
+                        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                        enables a clean separation of concerns and gives you full control over markup
+                        for enjoyable, agile development.
+                    </p>
+                    <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Get more libraries</h2>
+                    <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                    <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Web Hosting</h2>
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                    <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                </div>
+            </div
+*@

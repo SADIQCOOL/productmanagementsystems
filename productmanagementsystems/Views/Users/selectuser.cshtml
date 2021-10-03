@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "selectuser";
+}
+ @*
+<h2>Signup As</h2>
+
+<body>
+
+    @*
+        <div>
+
+            <input type="button" value="Click" onclick="@("window.location.href='" +Url.Action("index","Home")+"'");" />
+        </div>
+    *@
+
+    @*
+        <div>
+
+            <input type="button" value="Client" onclick="@("window.location.href='" +Url.Action("SignupClient","Users")+"'");" />
+        </div>
+
+        <div>
+
+            <input type="button" value="Driver" onclick="@("window.location.href='" +Url.Action("SignupDriver","Users")+"'");" />
+        </div>
+
+    *@
+
+
+    <div class="container">
+        <div class="inner">
+            <div class="loginbox">
+                <img src="~/Images/loginicon.png" class="avatar">
+                <h1>Register As</h1>
+                <div>
+
+                    <input type="submit" style="margin-top:50px;padding: 10px 10px;" value="Client" onclick="@("window.location.href='" +Url.Action("SignupClient","Users")+"'");" />
+                </div>
+
+                <div>
+
+                    <input type="submit" style="margin-top:30px;padding: 10px 10px;" value="Driver" onclick="@("window.location.href='" +Url.Action("SignupDriver","Users")+"'");" />
+                </div>
+
+
+
+            </div>
+
+</body>

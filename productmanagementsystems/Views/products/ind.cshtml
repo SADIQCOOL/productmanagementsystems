@@ -1,0 +1,175 @@
+﻿@*@model IEnumerable<productmanagementsystems.Models.product>*@
+@using productmanagementsystems.Models;
+@{
+    ViewBag.Title = "ind";
+}
+@*
+    <h2>ind</h2>
+    <table>
+        <tr>
+            <td>ProductID</td>
+            <td>ProductName</td>
+            <td>Images</td>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Productid</td>
+                <td>@item.Description</td>
+                <td>@item.images</td>
+                <td><img src="@Url.Content(item.images)" height="100" width="100" /></td>
+
+
+            </tr>
+
+        }
+
+
+    </table>
+
+*@
+
+
+@{
+    if (Session["clientname"] != null)
+    {
+        <h2 style="text-align:center">Welcome  @Session["clientname"]!</h2>
+
+        }
+
+        <div id="themeSlider" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+                <li data-target="#themeSlider" data-slide-to="1"></li>
+                <li data-target="#themeSlider" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="imgOverlay"></div>
+                    <img style="height:380px;width:100%" src="../Images/0_03_21_2017_08_03_26.jpg" alt="First slide">
+                    <div class="carousel-caption">
+                        <h3>HUAWEI P9</h3>
+                        <p>Mobile</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="imgOverlay"></div>
+                    <img style="height:380px;width:100%" src="../Images/2_03_21_2017_08_15_59.jpg" alt="Second slide">
+                    <div class="carousel-caption">
+                        <h3>HUAWEI GR5</h3>
+                        <p>Mobile</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="imgOverlay"></div>
+                    <img style="height:380px;width:100%" src="../Images/IMG_6192.jpg" alt="Third slide">
+                    <div class="carousel-caption">
+                        <h3>STEERING WHEEL</h3>
+                        <p>Gaming Accessories</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+                <span class="fa fa-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#themeSlider" data-slide="next">
+                <span class="fa fa-chevron-right"></span>
+            </a>
+
+
+        </div>
+          <h3 Style="color:black">Search Product </h3>
+        <p>@using (Html.BeginForm("ind", "products", FormMethod.Get))
+            {
+            <b> Search By:</b> @Html.RadioButton("searchBy", "Name",true) <text> Name </text>
+               @Html.RadioButton("searchBy", "Category") <text> Category <br/></text>
+               @Html.TextBox("search") <input  type = "submit" value = "Search"/>
+          }
+
+        </p>
+
+
+
+        <div class="olContent f1">
+
+            @*
+
+        <h2 Style="color:black">Search Product </h2>
+        <div class="olSearch fr">
+           <input type="text" placeholder="Enter Keyword.." name="searchKey" class="inputComn houseText form-control" />
+            <div class="searchIcon">
+                <button type="button" class="searchBtn">
+                    <img src="~/Images/searchIcon.png" />
+
+
+                </button>
+
+            </div>
+
+
+
+
+        </div>
+            *@
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header"></div>
+                    <h1 class="text-center">Products</h1>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        @*@Url.Content(item.images)*@
+        <div class="row product-container">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-md-3 col-sm-3 col-xs-6" style="">
+                    <div class="thumbnail product-item" style="height:300px">
+
+                        <img class="img-responsive" title="Click to View Product detail" style="cursor:pointer:height:120px;width:150px"
+                             src="~/Images/@item.images" />
+
+                        <div class="caption">
+                            <h5>@item.Description</h5>
+                            <p>Price: @item.Price Tk</p>
+                            <p>Category: @item.category</p>
+                            @{ if (Session["clientname"] != null)
+                                {
+                                    @Html.ActionLink("Add-to-Cart", "OrderNow", "ShoppingCart", new { id = item.Productid }, null)
+
+                                }
+
+
+                            }
+
+                            @Html.ActionLink("View-Details", "Details", "products", new { id = item.Productid }, null)
+                            @Html.ActionLink("Reviews", "Index", "comments", new { id = item.Productid }, null)
+                            @* @Html.ActionLink("View Detail", "ProductDetail", new { id = item.Productid }, null)
+                             @Html.ActionLink("Delete", "Delete", new { id = item.Productid })
+        @Html.ActionLink("buy", "buy", new { id = item.Productid })*@
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            }
+        </div>
+
+   
+ //   else {
+
+   //     Response.Redirect("~/Users/LoginClient");
+    //}
+
+}

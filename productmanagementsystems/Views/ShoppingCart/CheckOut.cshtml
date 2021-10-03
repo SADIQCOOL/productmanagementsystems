@@ -1,0 +1,144 @@
+﻿
+@using productmanagementsystems.Models;
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>Thank you for choosing our product.Please select your payment!</h2>
+<br />
+<br />
+<br />
+
+@{if (Session["clientname"] != null)
+    {
+        if (Session["Cart"] != null)
+        {
+
+
+
+            <table border="3" style="width:520px; height:100px;">
+                <tr style="width:200px;">
+                    <th style="width:200px;">Name</th>
+                    <th style="width:100px;">Price</th>
+                    <th>Quantity</th>
+                    @* <th>Sub Total</th>*@
+                    <th style="width:100px;">Sub Total</th>
+
+                </tr>
+                @foreach (var cart in (List<Cart>)Session["Cart"])
+                {
+
+                    <tr>
+                        <td>@cart.Product.Description</td>
+                        <td>@cart.Product.Price</td>
+                        @*<td>@cart.Product.Quantity</td>*@
+                        @* <td>@cart.Quantity</td>*@
+                        <td>
+                            <input type="text" name="quantity" id="quantity" value="@cart.Quantity" readonly />
+
+
+                        </td>
+
+                        @* <td>@(String.Format("{0:NO}", int.Parse(cart.Product.Price) * cart.Quantity))</td>*@
+                        @* <td>@(int.Parse(cart.Product.Price) * int.Parse(cart.Product.Quantity))</td>*@
+
+                        <td>@(int.Parse(cart.Product.Price) * cart.Quantity)</td>
+
+
+
+
+                    </tr>
+
+                }
+                <tr>
+                    <td colspan="3">
+                        Total:
+
+                    </td>
+                    <td>
+                        @{
+
+                            List<Cart> temp = (List<Cart>)Session["Cart"];
+                            //  var total = String.Format("",temp.Sum(x=>x.Quantity*x.Product.Price));
+                            var total = temp.Sum(x => x.Quantity * int.Parse(x.Product.Price));
+                        }
+                        @total TK
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+
+        }
+
+        else
+        {
+            <h4> No items in your cart!!!</h4>
+
+
+
+        }
+    }
+    else
+    {
+        Response.Redirect("~/Users/LoginClient");
+    }
+}
+<br />
+<br />
+<br />
+<br />
+@using (Html.BeginForm("ProcessOrder", "ShoppingCart", FormMethod.Post, new { id = "customer-form" }))
+{
+
+
+    <table border="3" style="width:320px; height:140px;">
+        <tr>
+            <td colspan="3" style="text-align:center;"><b>Payment Information</b></td>
+        </tr>
+
+        <tr>
+            <td style="width:160px;">Payment method :</td>
+            <input type="" name="clientid" id="clientid" value="@Session["clientid"]" readonly style="width:340px;" />
+            @*  <td><input type="text" id="payName" name="payName" /></td>*@
+            <td>
+                <select name="payName" id="payName" style="width:100px;">
+                    <option>Cash</option>
+                    <option>Bkash</option>
+
+                </select>
+
+            </td>
+
+
+
+        </tr>
+        <tr>
+
+            <td colspan="3"><input type="submit" value="Process Order" class="update-shopping" /></td>
+        </tr>
+
+    </table>
+}
+
+
+
+
+
+
+
+
+
+<script type="text/javascript>
+    $(" #customer-form").validate({
+        rules: {
+        cusN: {
+        required:true
+        }
+        }
+        });
+
+
+</script>

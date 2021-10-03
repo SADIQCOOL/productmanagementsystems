@@ -1,0 +1,65 @@
+﻿@model IEnumerable<productmanagementsystems.Models.comment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Comments</h2>
+
+@*
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+*@
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Client.ClinetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.commenttxt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.CAddress)
+        </th>
+        @*
+        <th>
+            @Html.DisplayNameFor(model => model.product.Description)
+        </th>
+        *@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Client.ClinetName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.commenttxt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Client.CAddress)
+    </td>
+
+    @*
+        <td>
+            @Html.DisplayFor(modelItem => item.product.Description)
+        </td>
+    *@
+
+    @*
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.commentid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.commentid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.commentid })
+        </td>
+    *@
+</tr>
+    }
+
+</table>

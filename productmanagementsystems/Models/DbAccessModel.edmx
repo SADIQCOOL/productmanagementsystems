@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sd2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adminlog">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Admin_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="buy">
+          <Key>
+            <PropertyRef Name="Purchase_Id" />
+          </Key>
+          <Property Name="Purchase_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Qtn" Type="varchar" MaxLength="50" />
+          <Property Name="Productid" Type="int" Nullable="false" />
+          <Property Name="Clinetid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Clinetid" />
+          </Key>
+          <Property Name="Clinetid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClinetName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CContactNo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="commentid" />
+          </Key>
+          <Property Name="commentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" />
+          <Property Name="p_id" Type="int" />
+          <Property Name="commenttxt" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="delivered">
+          <Key>
+            <PropertyRef Name="delever_Id" />
+          </Key>
+          <Property Name="delever_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverID" Type="int" />
+          <Property Name="p_id" Type="int" />
+          <Property Name="u_id" Type="int" />
+          <Property Name="o_quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DContactNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PickupNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Paymentid" />
+          </Key>
+          <Property Name="Paymentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentSystem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaidTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Productid" />
+          </Key>
+          <Property Name="Productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="varchar" MaxLength="50" />
+          <Property Name="images" Type="varchar" MaxLength="50" />
+          <Property Name="category" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__buy__Clinetid__44FF419A">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Clinetid" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="Clinetid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buy__Productid__440B1D61">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="Productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comment__p_id__7A672E12">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comment__u_id__797309D9">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Clinetid" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivered__Drive__6EF57B66">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="delivered" Type="Self.delivered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="DriverID" />
+            </Principal>
+            <Dependent Role="delivered">
+              <PropertyRef Name="DriverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivered__p_id__6FE99F9F">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="delivered" Type="Self.delivered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="delivered">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivered__u_id__70DDC3D8">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="delivered" Type="Self.delivered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Clinetid" />
+            </Principal>
+            <Dependent Role="delivered">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sd2ModelStoreContainer">
+          <EntitySet Name="Adminlog" EntityType="Self.Adminlog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="buy" EntityType="Self.buy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="delivered" EntityType="Self.delivered" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__buy__Clinetid__44FF419A" Association="Self.FK__buy__Clinetid__44FF419A">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="buy" EntitySet="buy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buy__Productid__440B1D61" Association="Self.FK__buy__Productid__440B1D61">
+            <End Role="product" EntitySet="product" />
+            <End Role="buy" EntitySet="buy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comment__p_id__7A672E12" Association="Self.FK__comment__p_id__7A672E12">
+            <End Role="product" EntitySet="product" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comment__u_id__797309D9" Association="Self.FK__comment__u_id__797309D9">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivered__Drive__6EF57B66" Association="Self.FK__delivered__Drive__6EF57B66">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="delivered" EntitySet="delivered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivered__p_id__6FE99F9F" Association="Self.FK__delivered__p_id__6FE99F9F">
+            <End Role="product" EntitySet="product" />
+            <End Role="delivered" EntitySet="delivered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivered__u_id__70DDC3D8" Association="Self.FK__delivered__u_id__70DDC3D8">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="delivered" EntitySet="delivered" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sd2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adminlog">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="buy">
+          <Key>
+            <PropertyRef Name="Purchase_Id" />
+          </Key>
+          <Property Name="Purchase_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Qtn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Productid" Type="Int32" Nullable="false" />
+          <Property Name="Clinetid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__buy__Clinetid__44FF419A" FromRole="buy" ToRole="Clients" />
+          <NavigationProperty Name="product" Relationship="Self.FK__buy__Productid__440B1D61" FromRole="buy" ToRole="product" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Clinetid" />
+          </Key>
+          <Property Name="Clinetid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClinetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="buys" Relationship="Self.FK__buy__Clinetid__44FF419A" FromRole="Clients" ToRole="buy" />
+          <NavigationProperty Name="comments" Relationship="Self.FK__comment__u_id__797309D9" FromRole="Clients" ToRole="comment" />
+          <NavigationProperty Name="delivereds" Relationship="Self.FK__delivered__u_id__70DDC3D8" FromRole="Clients" ToRole="delivered" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="commentid" />
+          </Key>
+          <Property Name="commentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" />
+          <Property Name="p_id" Type="Int32" />
+          <Property Name="commenttxt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__comment__u_id__797309D9" FromRole="comment" ToRole="Clients" />
+          <NavigationProperty Name="product" Relationship="Self.FK__comment__p_id__7A672E12" FromRole="comment" ToRole="product" />
+        </EntityType>
+        <EntityType Name="delivered">
+          <Key>
+            <PropertyRef Name="delever_Id" />
+          </Key>
+          <Property Name="delever_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverID" Type="Int32" />
+          <Property Name="p_id" Type="Int32" />
+          <Property Name="u_id" Type="Int32" />
+          <Property Name="o_quantity" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__delivered__u_id__70DDC3D8" FromRole="delivered" ToRole="Clients" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK__delivered__Drive__6EF57B66" FromRole="delivered" ToRole="Driver" />
+          <NavigationProperty Name="product" Relationship="Self.FK__delivered__p_id__6FE99F9F" FromRole="delivered" ToRole="product" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PickupNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="delivereds" Relationship="Self.FK__delivered__Drive__6EF57B66" FromRole="Driver" ToRole="delivered" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Paymentid" />
+          </Key>
+          <Property Name="Paymentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PaidTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Productid" />
+          </Key>
+          <Property Name="Productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="images" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="buys" Relationship="Self.FK__buy__Productid__440B1D61" FromRole="product" ToRole="buy" />
+          <NavigationProperty Name="comments" Relationship="Self.FK__comment__p_id__7A672E12" FromRole="product" ToRole="comment" />
+          <NavigationProperty Name="delivereds" Relationship="Self.FK__delivered__p_id__6FE99F9F" FromRole="product" ToRole="delivered" />
+        </EntityType>
+        <Association Name="FK__buy__Clinetid__44FF419A">
+          <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Clinetid" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="Clinetid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buy__Productid__440B1D61">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="Productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comment__u_id__797309D9">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Clinetid" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivered__u_id__70DDC3D8">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="delivered" Type="Self.delivered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Clinetid" />
+            </Principal>
+            <Dependent Role="delivered">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comment__p_id__7A672E12">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivered__Drive__6EF57B66">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="delivered" Type="Self.delivered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="DriverID" />
+            </Principal>
+            <Dependent Role="delivered">
+              <PropertyRef Name="DriverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivered__p_id__6FE99F9F">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="delivered" Type="Self.delivered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="delivered">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sd2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adminlogs" EntityType="Self.Adminlog" />
+          <EntitySet Name="buys" EntityType="Self.buy" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="delivereds" EntityType="Self.delivered" />
+          <EntitySet Name="Drivers" EntityType="Self.Driver" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <AssociationSet Name="FK__buy__Clinetid__44FF419A" Association="Self.FK__buy__Clinetid__44FF419A">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="buy" EntitySet="buys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buy__Productid__440B1D61" Association="Self.FK__buy__Productid__440B1D61">
+            <End Role="product" EntitySet="products" />
+            <End Role="buy" EntitySet="buys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comment__u_id__797309D9" Association="Self.FK__comment__u_id__797309D9">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivered__u_id__70DDC3D8" Association="Self.FK__delivered__u_id__70DDC3D8">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="delivered" EntitySet="delivereds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comment__p_id__7A672E12" Association="Self.FK__comment__p_id__7A672E12">
+            <End Role="product" EntitySet="products" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivered__Drive__6EF57B66" Association="Self.FK__delivered__Drive__6EF57B66">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="delivered" EntitySet="delivereds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivered__p_id__6FE99F9F" Association="Self.FK__delivered__p_id__6FE99F9F">
+            <End Role="product" EntitySet="products" />
+            <End Role="delivered" EntitySet="delivereds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sd2ModelStoreContainer" CdmEntityContainer="sd2Entities">
+          <EntitySetMapping Name="Adminlogs">
+            <EntityTypeMapping TypeName="sd2Model.Adminlog">
+              <MappingFragment StoreEntitySet="Adminlog">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+                <ScalarProperty Name="Admin_password" ColumnName="Admin_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buys">
+            <EntityTypeMapping TypeName="sd2Model.buy">
+              <MappingFragment StoreEntitySet="buy">
+                <ScalarProperty Name="Purchase_Id" ColumnName="Purchase_Id" />
+                <ScalarProperty Name="Qtn" ColumnName="Qtn" />
+                <ScalarProperty Name="Productid" ColumnName="Productid" />
+                <ScalarProperty Name="Clinetid" ColumnName="Clinetid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="sd2Model.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Clinetid" ColumnName="Clinetid" />
+                <ScalarProperty Name="ClinetName" ColumnName="ClinetName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CAddress" ColumnName="CAddress" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="CContactNo" ColumnName="CContactNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="sd2Model.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="commentid" ColumnName="commentid" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="commenttxt" ColumnName="commenttxt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="delivereds">
+            <EntityTypeMapping TypeName="sd2Model.delivered">
+              <MappingFragment StoreEntitySet="delivered">
+                <ScalarProperty Name="delever_Id" ColumnName="delever_Id" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="o_quantity" ColumnName="o_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="sd2Model.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="DContactNo" ColumnName="DContactNo" />
+                <ScalarProperty Name="PickupNo" ColumnName="PickupNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="sd2Model.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Paymentid" ColumnName="Paymentid" />
+                <ScalarProperty Name="PaymentSystem" ColumnName="PaymentSystem" />
+                <ScalarProperty Name="PaidTime" ColumnName="PaidTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="sd2Model.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="Productid" ColumnName="Productid" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="images" ColumnName="images" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

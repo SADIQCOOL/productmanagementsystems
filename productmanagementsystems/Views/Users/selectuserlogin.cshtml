@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "selectuserlogin";
+}
+@*
+    <h2>Login As</h2>
+    *@
+
+    <body>
+        @*
+            <div>
+
+                <input type="button" value="Admin" onclick="@("window.location.href='" +Url.Action("Loginadmin","Users")+"'");" />
+            </div>
+
+            <div>
+
+                <input type="button" value="Client" onclick="@("window.location.href='" +Url.Action("loginClient","Users")+"'");" />
+            </div>
+
+            <div>
+
+                <input type="button" value="Driver" onclick="@("window.location.href='" +Url.Action("loginDriver","Users")+"'");" />
+            </div>
+*@
+
+<div class="container">
+    <div class="inner">
+        <div class="loginbox">
+            <img src="~/Images/loginicon.png" class="avatar">
+            <h1>Login As</h1>
+            <div>
+
+                <input type="submit" style="margin-top:30px;padding: 10px 10px;" value="Admin" onclick="@("window.location.href='" +Url.Action("Loginadmin","Users")+"'");" />
+            </div>
+
+            <div>
+
+                <input type="submit" style="margin-top:30px;padding: 10px 10px;" value="Client" onclick="@("window.location.href='" +Url.Action("loginClient","Users")+"'");" />
+            </div>
+
+            <div>
+
+                <input type="submit" style="margin-top:30px;padding: 10px 10px;" value="Driver" onclick="@("window.location.href='" +Url.Action("loginDriver","Users")+"'");" />
+            </div>
+
+        </div>
+
+        </body>

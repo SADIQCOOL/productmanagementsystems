@@ -1,0 +1,144 @@
+
+.loginbox{
+    width: 320px;
+    height: 520px;
+    background:grey;
+    color: #fff;
+    top:50%;
+    left:50%;
+   
+    transform: translate(125%,10%);
+  
+    padding:70px 30px;
+    
+}
+.loginboxreg{
+    width: 320px;
+    height: 700px;
+    background:grey;
+    color: #fff;
+    top:50%;
+    left:50%;
+   
+    transform: translate(125%,05%);
+  
+    padding:70px 30px;
+    
+}
+
+
+.avatar{
+    
+   width:100px;
+   height:100px;
+   border-radius: 50%;
+   position:absolute;
+   top: -7%;
+   left: calc(50% - 50px);
+}
+
+h1{
+    margin:0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+    
+    
+}
+
+.loginbox p{
+     margin:0;
+    padding: 0;
+    font-weight:bold;
+    
+}
+.loginboxreg p{
+     margin:0;
+    padding: 0;
+    font-weight:bold;
+    
+}
+.loginbox input{
+    
+    width: 100%;
+    margin-bottom: 20px;
+}
+.loginboxreg input{
+    
+    width: 100%;
+    margin-bottom: 20px;
+}
+.loginbox input[type="text"], input[type="password"], input[type="email"]
+{
+    
+    border:none;
+    border-bottom: 1px solid #fff;
+    background: background;
+    outline: none;
+    height: 40px;
+    color: #fff ;
+    font-size: 16px;
+}
+.loginboxreg input[type="text"], input[type="password"], input[type="email"]
+{
+    
+    border:none;
+    border-bottom: 1px solid #fff;
+    background: background;
+    outline: none;
+    height: 40px;
+    color: #fff ;
+    font-size: 16px;
+}
+.loginboxreg input[type="submit"]{
+    
+    border:none;
+    outline:none;
+    height:40px;
+  font-size: 18px;
+ background: #fb2525;
+ color: #fff;
+ border-radius:20px;
+}
+.loginbox input[type="submit"]{
+    
+    border:none;
+    outline:none;
+    height:40px;
+  font-size: 18px;
+ background: #fb2525;
+ color: #fff;
+ border-radius:20px;
+}
+.loginboxreg input[type="submit"]:hover
+{
+    cursor:pointer;
+    background: #ffc107;
+    color:#000;
+    
+    
+}
+.loginbox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color:darkgrey;
+    
+}
+.loginboxreg a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color:darkgrey;
+    
+}
+.loginbox a:hover{
+    
+    
+    color:#ffc107;
+}
+.loginboxreg a:hover{
+    
+    
+    color:#ffc107;
+}

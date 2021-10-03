@@ -1,0 +1,71 @@
+﻿@using productmanagementsystems.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Driver Cart</h2>
+@{
+
+    if (Session["drCart"] != null)
+    {
+        using (Html.BeginForm("UpdateCart", "DriverCart", FormMethod.Post))
+        {
+
+            <table border="1">
+                <tr>
+                    <th>ProductID</th>
+                  
+                    <th>ClientID</th>
+                   
+                    <th>Quantity</th>
+
+
+                </tr>
+                @foreach (var cart in (List<drCart>)Session["drCart"])
+                {
+
+            <tr>
+                <td>@cart.Buy.Productid</td>
+              
+                <td>@cart.Buy.Clinetid</td>
+                <td>@cart.Buy.Qtn</td>
+
+
+                <td>
+
+                    @Html.ActionLink("Delete", "Delete", "DriverCart", new { id = cart.Buy.Purchase_Id },
+new { onclick = "return confirm('Are you sure you want to delete this?');" })
+                </td>
+
+
+            </tr>
+
+                }
+
+
+
+            </table>
+
+            @Html.ActionLink("CheckOut", "CheckOut", "DriverCart", null, new { @class = "continue-sh" })
+
+
+        }
+
+
+    }
+
+
+}
+
+<br />
+@using (Html.BeginForm("ProcessOrder", "DriverCart", FormMethod.Post, new { id = "customer-form" }))
+{
+
+    <tr>
+
+        <td colspan="3"><input type="submit" value="Process Order" class="update-shopping" /></td>
+    </tr>
+
+
+
+}
